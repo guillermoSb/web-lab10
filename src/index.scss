@@ -5,162 +5,156 @@ $primary-color: #fcbf49;
 $light-color: #fffbec;
 $shadow-1: #d66a17;
 
-
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 #app {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    background-color: $bg-color;
-    font-family: 'Roboto Slab', serif;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: $bg-color;
+  font-family: 'Roboto Slab', serif;
 }
 
 .calculator {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    width: 400px;
-    height: 700px;
-    background-color: $primary-color;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 400px;
+  height: 700px;
+  background-color: $primary-color;
+  border-radius: 2.5rem;
+  display: flex;
+  flex-direction: column;
+
+  &__screen {
+    font-size: 6rem;
+    margin: 2rem;
+    padding: 1rem 2rem;
+    height: 150px;
     border-radius: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    
-    
-    &__screen {
-        font-size: 6rem;
-        margin: 2rem;
-        padding: 1rem 2rem;
-        height: 150px;
-        border-radius: 2.5rem;
-        display: grid;
-        font-weight: lighter;
-        
-        grid-template-columns: repeat(9, 1fr);
-        align-content: flex-end;
-        justify-items: right;
-        
-        background: darken($color: $light-color, $amount: 10);
-        box-shadow: inset 5px 5px 10px #d6a23e,
-            inset -5px -5px 10px #ffdc54;
+    display: grid;
+    font-weight: lighter;
 
+    grid-template-columns: repeat(9, 1fr);
+    align-content: flex-end;
+    justify-items: right;
+
+    background: darken($color: $light-color, $amount: 10);
+    box-shadow: inset 5px 5px 10px #d6a23e, inset -5px -5px 10px #ffdc54;
+
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: lightblue;
+      opacity: 0.3;
+      position: absolute;
+      border-radius: 2.5rem;
+    }
+  }
+
+  &__keyboard {
+    margin: 2rem 2rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    flex: 1;
+    gap: 1.5rem;
+  }
+
+  &__button {
+    border: none;
+    background-color: lighten($color: $primary-color, $amount: 2);
+    border-radius: 100%;
+    font-size: 2rem;
+    font-weight: 500;
+    transition: background-color 0.2s, font-size 0.08s;
+
+    box-shadow: 5px 6px 10px -9px black, 5px 6px 10px -5px $shadow-1,
+      -5px -6px 10px -9px $light-color;
+
+    &:hover {
+      cursor: pointer;
+      background-color: lighten($color: $primary-color, $amount: 5);
     }
 
-    &__keyboard {
-        margin: 2rem 2rem 2rem;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(5, 1fr);
-        flex: 1;
-        gap: 1.5rem;
-        
+    &:active {
+      box-shadow: inset 5px 6px 10px -9px black,
+        inset 5px 6px 10px -5px $shadow-1,
+        inset -5px -6px 10px -9px $light-color;
+      font-size: 1.5rem;
     }
 
-    &__button {
-        border: none;
-        background-color: lighten($color: $primary-color, $amount: 2);
-        border-radius: 100%;
-        font-size: 2rem;
-        font-weight: 500;
-        transition: background-color 0.2s, font-size 0.08s;
-        
-        box-shadow: 5px 6px 10px -9px black,
-            5px 6px 10px -5px $shadow-1,
-            -5px -6px 10px -9px $light-color;
-
-
-        &:hover {
-            cursor: pointer;
-            background-color: lighten($color: $primary-color, $amount: 5);
-        }
-
-        &:active {
-            box-shadow: inset 5px 6px 10px -9px black,
-            inset 5px 6px 10px -5px $shadow-1,
-            inset -5px -6px 10px -9px $light-color;
-            font-size: 1.5rem;
-        }
-        
-        &--c {
-            grid-column: 1;
-            grid-row: 1;
-        }
-        &--rev {
-            grid-column: 2;
-            grid-row: 1; 
-        }
-        &--mod {
-            grid-column: 3;
-            grid-row: 1;
-        }
-        &--div {
-            grid-column: 4;
-            grid-row: 1;
-        }
-        &--mul {
-            grid-column: 4;
-            grid-row: 2;
-        }
-        &--min {
-            grid-column: 4;
-            grid-row: 3;
-        }
-        &--plus {
-            grid-column: 4;
-            grid-row: 4/-1;
-
-            border-radius: 20rem;
-            
-        }
-        &--dot {
-            grid-column: 2;
-            grid-row: 5;
-        }
-        &--eq {
-            grid-column: 3;
-            grid-row: 5;
-        }
-        &--1 {
-
-        }
-        &--2 {
-
-        }
-        &--3 {
-
-        }
-        &--4 {
-
-        }
-        &--5 {
-
-        }
-        &--6 {
-
-        }
-        &--7 {
-
-        }
-        &--8 {
-
-        }
-        &--9 {
-
-        }
-        &--0 {
-
-        }
+    &--c {
+      grid-column: 1;
+      grid-row: 1;
     }
+    &--rev {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    &--mod {
+      grid-column: 3;
+      grid-row: 1;
+    }
+    &--div {
+      grid-column: 4;
+      grid-row: 1;
+    }
+    &--mul {
+      grid-column: 4;
+      grid-row: 2;
+    }
+    &--min {
+      grid-column: 4;
+      grid-row: 3;
+    }
+    &--plus {
+      grid-column: 4;
+      grid-row: 4/-1;
 
+      border-radius: 20rem;
+    }
+    &--dot {
+      grid-column: 2;
+      grid-row: 5;
+    }
+    &--eq {
+      grid-column: 3;
+      grid-row: 5;
+    }
+    &--1 {
+    }
+    &--2 {
+    }
+    &--3 {
+    }
+    &--4 {
+    }
+    &--5 {
+    }
+    &--6 {
+    }
+    &--7 {
+    }
+    &--8 {
+    }
+    &--9 {
+    }
+    &--0 {
+    }
+  }
 }

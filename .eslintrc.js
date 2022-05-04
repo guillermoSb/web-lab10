@@ -5,8 +5,6 @@ module.exports = {
     },
     extends: [
         'eslint:recommended',
-        'plugin:react/recommended',
-        'airbnb',
         // 'prettier',
     ],
     parserOptions: {
@@ -20,8 +18,7 @@ module.exports = {
         'react',
     ],
     rules: {
-        'linebreak-style': ['error', 'unix'],
-        'import/extensions': ['error', 'never', { jsx: 'always' }], // permitir jsx
-        'operator-linebreak': ['none', 'after'],  // Prettier colisiona con airbnb en este aspecto
+        "semi": ["single", "always"],
+        "quotes": ["error", "double"]
     },
 };

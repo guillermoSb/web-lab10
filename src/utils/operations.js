@@ -44,6 +44,7 @@ export const multiply = (a, b) => a * b;
 export const mod = (a, b) => a % b;
 
 
+
 /**
  * Converts an array to a number
  * @param {number[]} arr 

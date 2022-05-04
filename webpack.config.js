@@ -32,6 +32,14 @@ module.exports = {
                     loader: 'babel-loader', // Use babel with webpack
                 },
             },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif|woff|woff2|mp4|m4a)$/i,
+                use: [
+                    {
+                        loader: "file-loader",
+                    },
+                ],
+            },
         ],
     },
     devServer: {
