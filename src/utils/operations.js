@@ -10,6 +10,14 @@ export const add = (a, b) => a + b;
 
 
 /**
+ * Subtracts two numbers
+ * @param {number} a 
+ * @param {number} b 
+ * @returns 
+ */
+export const sub = (a, b) => a - b;
+
+/**
  * Divide
  * @param {number} a 
  * @param {number} b 
