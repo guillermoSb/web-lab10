@@ -29,6 +29,9 @@ html {
     height: 700px;
     background-color: $primary-color;
     border-radius: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    
     
     &__screen {
         font-size: 6rem;
@@ -46,10 +49,82 @@ html {
     }
 
     &__keyboard {
-        margin: 0 2rem;
+        margin: 2rem 2rem 2rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        flex: 1;
         
-        
-        background-color: red;
+    }
+
+    &__button {
+        &--c {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        &--rev {
+            grid-column: 2;
+            grid-row: 1; 
+        }
+        &--mod {
+            grid-column: 3;
+            grid-row: 1;
+        }
+        &--div {
+            grid-column: 4;
+            grid-row: 1;
+        }
+        &--mul {
+            grid-column: 4;
+            grid-row: 2;
+        }
+        &--min {
+            grid-column: 4;
+            grid-row: 3;
+        }
+        &--plus {
+            grid-column: 4;
+            grid-row: 4/-1;
+            
+        }
+        &--dot {
+            grid-column: 2;
+            grid-row: 5;
+        }
+        &--eq {
+            grid-column: 3;
+            grid-row: 5;
+        }
+        &--1 {
+
+        }
+        &--2 {
+
+        }
+        &--3 {
+
+        }
+        &--4 {
+
+        }
+        &--5 {
+
+        }
+        &--6 {
+
+        }
+        &--7 {
+
+        }
+        &--8 {
+
+        }
+        &--9 {
+
+        }
+        &--0 {
+
+        }
     }
 
 }
