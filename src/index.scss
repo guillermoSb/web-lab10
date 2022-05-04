@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&display=swap');
+
 $bg-color: #003049;
 $primary-color: #fcbf49;
 $light-color: #fffbec;
@@ -20,6 +22,7 @@ html {
     height: 100vh;
     position: relative;
     background-color: $bg-color;
+    font-family: 'Roboto Slab', serif;
 }
 
 .calculator {
@@ -42,6 +45,7 @@ html {
         height: 150px;
         border-radius: 2.5rem;
         display: grid;
+        font-weight: lighter;
         
         grid-template-columns: repeat(9, 1fr);
         align-content: flex-end;
@@ -59,7 +63,7 @@ html {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(5, 1fr);
         flex: 1;
-        gap: 1rem;
+        gap: 1.5rem;
         
     }
 
@@ -68,7 +72,9 @@ html {
         background-color: lighten($color: $primary-color, $amount: 2);
         border-radius: 100%;
         font-size: 2rem;
-        // border: 0.5px solid black;
+        font-weight: 500;
+        transition: background-color 0.2s, font-size 0.08s;
+        
         box-shadow: 5px 6px 10px -9px black,
             5px 6px 10px -5px $shadow-1,
             -5px -6px 10px -9px $light-color;
@@ -77,6 +83,13 @@ html {
         &:hover {
             cursor: pointer;
             background-color: lighten($color: $primary-color, $amount: 5);
+        }
+
+        &:active {
+            box-shadow: inset 5px 6px 10px -9px black,
+            inset 5px 6px 10px -5px $shadow-1,
+            inset -5px -6px 10px -9px $light-color;
+            font-size: 1.5rem;
         }
         
         &--c {
