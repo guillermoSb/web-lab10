@@ -5,7 +5,9 @@ $primary-color: #fcbf49;
 $light-color: #fffbec;
 $shadow-1: #d66a17;
 
-$scheme-light: $primary-color, $light-color, $shadow-1;
+$primary-color-dark: #3a0ca3;
+$shadow-dark: #560bad;
+$light-color-dark: #c1d8f2;
 
 *,
 *::before,
@@ -77,6 +79,43 @@ html {
   display: flex;
   flex-direction: column;
 
+  &--dark {
+    background-color: $primary-color-dark;
+
+    .calculator__screen {
+      background: darken($color: $light-color-dark, $amount: 10);
+      box-shadow: inset 5px 5px 10px $primary-color-dark,
+        inset -5px -5px 10px $primary-color-dark;
+      color: white;
+
+      &::before {
+        background-color: black;
+      }
+    }
+
+    .calculator__ans {
+      color: darken($color: #fff, $amount: 30);
+    }
+
+    .calculator__button {
+      color: white;
+      box-shadow: 5px 6px 10px -9px black, 5px 6px 10px -5px $shadow-dark,
+        -5px -6px 10px -9px $light-color-dark;
+      background-color: lighten($color: $primary-color-dark, $amount: 2);
+      &:hover {
+        cursor: pointer;
+        background-color: lighten($color: $primary-color-dark, $amount: 5);
+      }
+
+      &:active {
+        box-shadow: inset 5px 6px 10px -9px black,
+          inset 5px 6px 10px -5px $shadow-dark,
+          inset -5px -6px 10px -9px $light-color-dark;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
   &__screen {
     font-size: 6rem;
     margin: 2rem;
@@ -133,8 +172,7 @@ html {
     font-weight: 500;
     transition: background-color 0.2s, font-size 0.08s;
 
-    box-shadow: 5px 6px 10px -9px black,
-      // 5px 6px 10px -5px $shadow-1,
+    box-shadow: 5px 6px 10px -9px black, 5px 6px 10px -5px $shadow-1,
       -5px -6px 10px -9px $light-color;
 
     &:hover {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import useSound from 'use-sound'
+import { FaVolumeUp, FaVolumeMute, FaSun, FaMoon } from 'react-icons/fa'
 import {
   add,
   arrayToNumber,
@@ -8,15 +9,17 @@ import {
   multiply,
   sub,
 } from '../utils/operations'
+
 import sound from '../assets/btn.m4a'
 import Github from '../assets/github.png'
-import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa'
+
 function App() {
   const [display, setDisplay] = useState([])
   const [ans, setAns] = useState(0)
   const [currentOperation, setCurrentOperation] = useState(null)
   const [calcState, setCalcState] = useState('num')
   const [audioOn, setAudioOn] = useState(true)
+  const [lightTheme, setLightTheme] = useState(false)
 
   const [playAudio] = useSound(sound, { volume: 0.25 })
 
@@ -110,7 +113,9 @@ function App() {
           <img src={Github} alt="Github Logo" />
         </a>
         <button
-          className="buttons__button buttons__button--mute"
+          className={`buttons__button ${
+            audioOn ? '' : 'buttons__button--mute'
+          }`}
           type="button"
           onClick={() => {
             setAudioOn(!audioOn)
@@ -118,8 +123,17 @@ function App() {
         >
           {audioOn ? <FaVolumeUp /> : <FaVolumeMute />}
         </button>
+        <button
+          className="buttons__button"
+          type="button"
+          onClick={() => {
+            setLightTheme(!lightTheme)
+          }}
+        >
+          {lightTheme ? <FaSun /> : <FaMoon />}
+        </button>
       </div>
-      <div className="calculator">
+      <div className={`calculator ${lightTheme ? '' : 'calculator--dark'}`}>
         <div className="calculator__screen">
           <span className="calculator__ans">
             {display.length <= 9 ? ans : ''}
