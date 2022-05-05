@@ -26,16 +26,39 @@ html {
   font-family: 'Roboto Slab', serif;
 }
 
-.github {
+.buttons {
+  display: flex;
   position: absolute;
+  right: 2.4rem;
+  bottom: 2.4rem;
+  gap: 1rem;
+
+  &__button {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+    padding: 1rem;
+    border: none;
+    font-size: 2rem;
+    transition: transform 0.2s;
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-1rem);
+    }
+    &--mute {
+      background-color: orangered;
+    }
+  }
+}
+.github {
   background-color: white;
   padding: 1rem;
   border-radius: 100%;
-  right: 2.4rem;
-  bottom: 2.4rem;
   transition: transform 0.2s;
+  width: 5rem;
+  height: 5rem;
   img {
-    width: 5rem;
+    width: 3rem;
   }
   &:hover {
     transform: translateY(-1rem);

@@ -10,12 +10,13 @@ import {
 } from '../utils/operations'
 import sound from '../assets/btn.m4a'
 import Github from '../assets/github.png'
-
+import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa'
 function App() {
   const [display, setDisplay] = useState([])
   const [ans, setAns] = useState(0)
   const [currentOperation, setCurrentOperation] = useState(null)
   const [calcState, setCalcState] = useState('num')
+  const [audioOn, setAudioOn] = useState(true)
 
   const [playAudio] = useSound(sound, { volume: 0.25 })
 
@@ -24,7 +25,7 @@ function App() {
    * @param {number} value
    */
   const numberPressed = (value) => {
-    playAudio()
+    if (audioOn) playAudio()
     // If there is a current operation set the ans to the value
 
     if (currentOperation && calcState === 'op') {
@@ -46,7 +47,7 @@ function App() {
    * Event that runs when the clear button was pressed
    */
   const clearPressed = () => {
-    playAudio()
+    if (audioOn) playAudio()
     setAns(0)
     setCurrentOperation(null)
     setCalcState('num')
@@ -58,7 +59,7 @@ function App() {
    * @param {string} operator
    */
   const operatorPressed = (operator) => {
-    playAudio()
+    if (audioOn) playAudio()
     if (operator === '+/-') {
       setDisplay(`${-arrayToNumber(display)}`.split(''))
       return
@@ -71,7 +72,7 @@ function App() {
    * Event that runs when the equal is pressed
    */
   const equalPressed = () => {
-    playAudio()
+    if (audioOn) playAudio()
     let result = ans
     if (!currentOperation) {
       return
@@ -99,14 +100,25 @@ function App() {
 
   return (
     <>
-      <a
-        href="https://github.com/guillermoSb/web-lab10"
-        target="_blank"
-        rel="noreferrer"
-        className="github"
-      >
-        <img src={Github} alt="Github Logo" />
-      </a>
+      <div className="buttons">
+        <a
+          href="https://github.com/guillermoSb/web-lab10"
+          target="_blank"
+          rel="noreferrer"
+          className="github"
+        >
+          <img src={Github} alt="Github Logo" />
+        </a>
+        <button
+          className="buttons__button buttons__button--mute"
+          type="button"
+          onClick={() => {
+            setAudioOn(!audioOn)
+          }}
+        >
+          {audioOn ? <FaVolumeUp /> : <FaVolumeMute />}
+        </button>
+      </div>
       <div className="calculator">
         <div className="calculator__screen">
           <span className="calculator__ans">
