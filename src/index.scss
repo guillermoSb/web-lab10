@@ -26,6 +26,22 @@ html {
   font-family: 'Roboto Slab', serif;
 }
 
+.github {
+  position: absolute;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 100%;
+  right: 1rem;
+  bottom: 1rem;
+  transition: transform 0.2s;
+  img {
+    width: 5rem;
+  }
+  &:hover {
+    transform: translateY(-1rem);
+  }
+}
+
 .calculator {
   position: absolute;
   top: 50%;
