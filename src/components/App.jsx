@@ -92,18 +92,22 @@ function App() {
       result = multiply(arrayToNumber(display), result);
     }
     setAns(result);
-    setDisplay(`${result}`.split('').slice(0, 9));
+    setDisplay(`${result}`.split(''));
     setCurrentOperation(null);
   };
 
   return (
     <div className="calculator">
       <div className="calculator__screen">
-        {display.map((item) => (
-          <span key={item - `${Math.random()}`} className="calculator__cell">
-            {item}
-          </span>
-        ))}
+        {display.length <= 9 ? (
+          display.map((item) => (
+            <span key={item - `${Math.random()}`} className="calculator__cell">
+              {item}
+            </span>
+          ))
+        ) : (
+          <span className="calculator__cell">ERROR</span>
+        )}
       </div>
       <div className="calculator__keyboard">
         <button
