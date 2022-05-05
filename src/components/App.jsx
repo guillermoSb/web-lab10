@@ -99,6 +99,9 @@ function App() {
   return (
     <div className="calculator">
       <div className="calculator__screen">
+        <span className="calculator__ans">
+          {display.length <= 9 ? ans : ''}
+        </span>
         {display.length <= 9 ? (
           display.map((item) => (
             <span key={item - `${Math.random()}`} className="calculator__cell">
