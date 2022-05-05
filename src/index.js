@@ -1,4 +1,3 @@
-
 import React from 'react';  // React Library
 import ReactDOM from 'react-dom';   // DOM library
 import './index.scss';  // Import CSS

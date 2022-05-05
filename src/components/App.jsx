@@ -26,17 +26,17 @@ function App() {
     playAudio();
     // If there is a current operation set the ans to the value
 
-    if (display.length === 9) return; // Only 9 slots available
-    if (value === '.' && display.find((i) => i === '.')) return; // Cannot have two dots on the same expression
-    if (value === '.' && display.length === 0) {
-      setDisplay([0, '.']);
-      return;
-    }
     if (currentOperation && calcState === 'op') {
       setAns(arrayToNumber(display));
       setDisplay([value]);
       setCalcState('num');
     } else {
+      if (display.length === 9) return; // Only 9 slots available
+      if (value === '.' && display.find((i) => i === '.')) return; // Cannot have two dots on the same expression
+      if (value === '.' && display.length === 0) {
+        setDisplay([0, '.']);
+        return;
+      }
       setDisplay([...display, value]);
     }
   };
@@ -92,7 +92,7 @@ function App() {
       result = multiply(arrayToNumber(display), result);
     }
     setAns(result);
-    setDisplay(`${result}`.split(''));
+    setDisplay(`${result}`.split('').slice(0, 9));
     setCurrentOperation(null);
   };
 
@@ -107,12 +107,14 @@ function App() {
       </div>
       <div className="calculator__keyboard">
         <button
+          type="button"
           className="calculator__button calculator__button--c"
           onClick={clearPressed}
         >
           C
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--rev"
           onClick={() => {
             operatorPressed('+/-');
@@ -121,6 +123,7 @@ function App() {
           +/-
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--mod"
           onClick={() => {
             operatorPressed('%');
@@ -129,6 +132,7 @@ function App() {
           %
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--div"
           onClick={() => {
             operatorPressed('/');
@@ -137,6 +141,7 @@ function App() {
           /
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--mul"
           onClick={() => {
             operatorPressed('x');
@@ -145,6 +150,7 @@ function App() {
           X
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--min"
           onClick={() => {
             operatorPressed('-');
@@ -153,6 +159,7 @@ function App() {
           -
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--plus"
           onClick={() => {
             operatorPressed('+');
@@ -161,6 +168,7 @@ function App() {
           +
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--dot"
           onClick={() => {
             numberPressed('.');
@@ -169,12 +177,14 @@ function App() {
           .
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--eq"
           onClick={equalPressed}
         >
           =
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--7"
           onClick={() => {
             numberPressed(7);
@@ -183,6 +193,7 @@ function App() {
           7
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--8"
           onClick={() => {
             numberPressed(8);
@@ -191,6 +202,7 @@ function App() {
           8
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--9"
           onClick={() => {
             numberPressed(9);
@@ -199,6 +211,7 @@ function App() {
           9
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--4"
           onClick={() => {
             numberPressed(4);
@@ -207,6 +220,7 @@ function App() {
           4
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--5"
           onClick={() => {
             numberPressed(5);
@@ -215,6 +229,7 @@ function App() {
           5
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--6"
           onClick={() => {
             numberPressed(6);
@@ -223,6 +238,7 @@ function App() {
           6
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--1"
           onClick={() => {
             numberPressed(1);
@@ -231,6 +247,7 @@ function App() {
           1
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--2"
           onClick={() => {
             numberPressed(2);
@@ -239,6 +256,7 @@ function App() {
           2
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--3"
           onClick={() => {
             numberPressed(3);
@@ -247,6 +265,7 @@ function App() {
           3
         </button>
         <button
+          type="button"
           className="calculator__button calculator__button--0"
           onClick={() => {
             numberPressed(0);
