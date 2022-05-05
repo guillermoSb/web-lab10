@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import useSound from 'use-sound';
+import React, { useState } from 'react'
+import useSound from 'use-sound'
 import {
   add,
   arrayToNumber,
@@ -7,94 +7,94 @@ import {
   mod,
   multiply,
   sub,
-} from '../utils/operations';
-import sound from '../assets/btn.m4a';
+} from '../utils/operations'
+import sound from '../assets/btn.m4a'
 
 function App() {
-  const [display, setDisplay] = useState([]);
-  const [ans, setAns] = useState(0);
-  const [currentOperation, setCurrentOperation] = useState(null);
-  const [calcState, setCalcState] = useState('num');
+  const [display, setDisplay] = useState([])
+  const [ans, setAns] = useState(0)
+  const [currentOperation, setCurrentOperation] = useState(null)
+  const [calcState, setCalcState] = useState('num')
 
-  const [playAudio] = useSound(sound, { volume: 0.25 });
+  const [playAudio] = useSound(sound, { volume: 0.25 })
 
   /**
    * Event indicating that a number was pressed on the UI
    * @param {number} value
    */
   const numberPressed = (value) => {
-    playAudio();
+    playAudio()
     // If there is a current operation set the ans to the value
 
     if (currentOperation && calcState === 'op') {
-      setAns(arrayToNumber(display));
-      setDisplay([value]);
-      setCalcState('num');
+      setAns(arrayToNumber(display))
+      setDisplay([value])
+      setCalcState('num')
     } else {
-      if (display.length === 9) return; // Only 9 slots available
-      if (value === '.' && display.find((i) => i === '.')) return; // Cannot have two dots on the same expression
+      if (display.length === 9) return // Only 9 slots available
+      if (value === '.' && display.find((i) => i === '.')) return // Cannot have two dots on the same expression
       if (value === '.' && display.length === 0) {
-        setDisplay([0, '.']);
-        return;
+        setDisplay([0, '.'])
+        return
       }
-      setDisplay([...display, value]);
+      setDisplay([...display, value])
     }
-  };
+  }
 
   /**
    * Event that runs when the clear button was pressed
    */
   const clearPressed = () => {
-    playAudio();
-    setAns(0);
-    setCurrentOperation(null);
-    setCalcState('num');
-    setDisplay([]);
-  };
+    playAudio()
+    setAns(0)
+    setCurrentOperation(null)
+    setCalcState('num')
+    setDisplay([])
+  }
 
   /**
    * Event that runs when an operator was pressed
    * @param {string} operator
    */
   const operatorPressed = (operator) => {
-    playAudio();
+    playAudio()
     if (operator === '+/-') {
-      setDisplay(`${-arrayToNumber(display)}`.split(''));
-      return;
+      setDisplay(`${-arrayToNumber(display)}`.split(''))
+      return
     }
-    setCurrentOperation(operator);
-    setCalcState('op');
-  };
+    setCurrentOperation(operator)
+    setCalcState('op')
+  }
 
   /**
    * Event that runs when the equal is pressed
    */
   const equalPressed = () => {
-    playAudio();
-    let result = ans;
+    playAudio()
+    let result = ans
     if (!currentOperation) {
-      return;
+      return
     }
     if (currentOperation === '+') {
-      result = add(arrayToNumber(display), result);
+      result = add(arrayToNumber(display), result)
     }
     if (currentOperation === '-') {
-      result = sub(result, arrayToNumber(display));
+      result = sub(result, arrayToNumber(display))
     }
     if (currentOperation === '/') {
-      result = divide(result, arrayToNumber(display));
+      result = divide(result, arrayToNumber(display))
     }
 
     if (currentOperation === '%') {
-      result = mod(result, arrayToNumber(display));
+      result = mod(result, arrayToNumber(display))
     }
     if (currentOperation === 'x') {
-      result = multiply(arrayToNumber(display), result);
+      result = multiply(arrayToNumber(display), result)
     }
-    setAns(result);
-    setDisplay(`${result}`.split(''));
-    setCurrentOperation(null);
-  };
+    setAns(result)
+    setDisplay(`${result}`.split(''))
+    setCurrentOperation(null)
+  }
 
   return (
     <div className="calculator">
@@ -121,7 +121,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--rev"
           onClick={() => {
-            operatorPressed('+/-');
+            operatorPressed('+/-')
           }}
         >
           +/-
@@ -130,7 +130,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--mod"
           onClick={() => {
-            operatorPressed('%');
+            operatorPressed('%')
           }}
         >
           %
@@ -139,7 +139,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--div"
           onClick={() => {
-            operatorPressed('/');
+            operatorPressed('/')
           }}
         >
           /
@@ -148,7 +148,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--mul"
           onClick={() => {
-            operatorPressed('x');
+            operatorPressed('x')
           }}
         >
           X
@@ -157,7 +157,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--min"
           onClick={() => {
-            operatorPressed('-');
+            operatorPressed('-')
           }}
         >
           -
@@ -166,7 +166,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--plus"
           onClick={() => {
-            operatorPressed('+');
+            operatorPressed('+')
           }}
         >
           +
@@ -175,7 +175,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--dot"
           onClick={() => {
-            numberPressed('.');
+            numberPressed('.')
           }}
         >
           .
@@ -191,7 +191,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--7"
           onClick={() => {
-            numberPressed(7);
+            numberPressed(7)
           }}
         >
           7
@@ -200,7 +200,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--8"
           onClick={() => {
-            numberPressed(8);
+            numberPressed(8)
           }}
         >
           8
@@ -209,7 +209,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--9"
           onClick={() => {
-            numberPressed(9);
+            numberPressed(9)
           }}
         >
           9
@@ -218,7 +218,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--4"
           onClick={() => {
-            numberPressed(4);
+            numberPressed(4)
           }}
         >
           4
@@ -227,7 +227,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--5"
           onClick={() => {
-            numberPressed(5);
+            numberPressed(5)
           }}
         >
           5
@@ -236,7 +236,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--6"
           onClick={() => {
-            numberPressed(6);
+            numberPressed(6)
           }}
         >
           6
@@ -245,7 +245,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--1"
           onClick={() => {
-            numberPressed(1);
+            numberPressed(1)
           }}
         >
           1
@@ -254,7 +254,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--2"
           onClick={() => {
-            numberPressed(2);
+            numberPressed(2)
           }}
         >
           2
@@ -263,7 +263,7 @@ function App() {
           type="button"
           className="calculator__button calculator__button--3"
           onClick={() => {
-            numberPressed(3);
+            numberPressed(3)
           }}
         >
           3
@@ -272,14 +272,14 @@ function App() {
           type="button"
           className="calculator__button calculator__button--0"
           onClick={() => {
-            numberPressed(0);
+            numberPressed(0)
           }}
         >
           0
         </button>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

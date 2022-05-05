@@ -22,5 +22,6 @@ module.exports = {
   rules: {
     // "semi": ["single", "always"],
     quotes: ['error', 'single'],
+    semi: ['error', 'never'], // Regla especial para no usar semicolons.
   },
-};
+}
