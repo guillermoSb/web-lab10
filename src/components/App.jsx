@@ -19,7 +19,7 @@ function App() {
   const [currentOperation, setCurrentOperation] = useState(null)
   const [calcState, setCalcState] = useState('num')
   const [audioOn, setAudioOn] = useState(true)
-  const [lightTheme, setLightTheme] = useState(false)
+  const [lightTheme, setLightTheme] = useState(true)
 
   const [playAudio] = useSound(sound, { volume: 0.25 })
 
