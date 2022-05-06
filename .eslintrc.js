@@ -23,5 +23,6 @@ module.exports = {
     // "semi": ["single", "always"],
     quotes: ['error', 'single'],
     semi: ['error', 'never'], // Regla especial para no usar semicolons.
+    'import/extensions': ['error', 'never', { jsx: 'always' }], // permitir jsx
   },
 }
