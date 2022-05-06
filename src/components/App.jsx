@@ -141,7 +141,7 @@ function App() {
           {display.length <= 9 ? (
             display.map((item) => (
               <span
-                key={item - `${Math.random()}`}
+                key={`${item} - ${Math.random() * 1000}`}
                 className="calculator__cell"
               >
                 {item}
