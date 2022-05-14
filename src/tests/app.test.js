@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react'
 import React from 'react'
+import userEvent from '@testing-library/user-event'
 import App from '../components/App'
 
 describe('bottom buttons', () => {
@@ -24,4 +25,14 @@ describe('bottom buttons', () => {
     expect(button).toBeVisible() // The button should be visible
     expect(button).toBeEnabled() // The button should be enabled
   })
+})
+
+test('should add number to display when clicked', async () => {
+  const user = userEvent.setup()
+  const { getByRole, getAllByRole } = render(<App />)
+  const button = getByRole('button', { name: /1/i })
+  expect(button).toBeEnabled() // The button should be enabled
+  await user.click(button) // Click the button
+  const displayedNumber = getByRole('math') // Get the number displayed
+  expect(displayedNumber).toHaveTextContent('1') // The display should have a 1
 })
