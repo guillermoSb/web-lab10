@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import useSound from 'use-sound'
+import React, { useEffect, useState } from 'react'
 import { FaVolumeUp, FaVolumeMute, FaSun, FaMoon } from 'react-icons/fa'
+import useSound from 'use-sound'
 import {
   add,
   arrayToNumber,
@@ -10,8 +10,9 @@ import {
   sub,
 } from '../utils/operations'
 
-import sound from '../assets/btn.m4a'
 import Github from '../assets/github.png'
+import sound from '../assets/btn.m4a'
+import CalculatorButton from './CalculatorButton.jsx'
 
 function App() {
   const [display, setDisplay] = useState([])
@@ -22,6 +23,10 @@ function App() {
   const [lightTheme, setLightTheme] = useState(true)
 
   const [playAudio] = useSound(sound, { volume: 0.25 })
+
+  useEffect(() => {
+    playAudio()
+  }, [])
 
   /**
    * Event indicating that a number was pressed on the UI
@@ -108,7 +113,9 @@ function App() {
           href="https://github.com/guillermoSb/web-lab10"
           target="_blank"
           rel="noreferrer"
-          className="github"
+          role="button"
+          name="github"
+          className="buttons__button github"
         >
           <img src={Github} alt="Github Logo" />
         </a>
@@ -117,6 +124,7 @@ function App() {
             audioOn ? '' : 'buttons__button--mute'
           }`}
           type="button"
+          data-testid="audio-button"
           onClick={() => {
             setAudioOn(!audioOn)
           }}
@@ -126,6 +134,7 @@ function App() {
         <button
           className="buttons__button"
           type="button"
+          data-testid="theme-button"
           onClick={() => {
             setLightTheme(!lightTheme)
           }}
@@ -152,173 +161,145 @@ function App() {
           )}
         </div>
         <div className="calculator__keyboard">
-          <button
+          <CalculatorButton
             type="button"
             className="calculator__button calculator__button--c"
             onClick={clearPressed}
-          >
-            C
-          </button>
-          <button
+            content=" C"
+          />
+
+          <CalculatorButton
             type="button"
             className="calculator__button calculator__button--rev"
             onClick={() => {
               operatorPressed('+/-')
             }}
-          >
-            +/-
-          </button>
-          <button
+            content="+/-"
+          />
+          <CalculatorButton
             type="button"
             className="calculator__button calculator__button--mod"
             onClick={() => {
               operatorPressed('%')
             }}
-          >
-            %
-          </button>
-          <button
+            content="%"
+          />
+          <CalculatorButton
             type="button"
-            className="calculator__button calculator__button--div"
+            className="calculator__button--div"
+            content="/"
             onClick={() => {
               operatorPressed('/')
             }}
-          >
-            /
-          </button>
-          <button
+          />
+
+          <CalculatorButton
             type="button"
             className="calculator__button calculator__button--mul"
             onClick={() => {
               operatorPressed('x')
             }}
-          >
-            X
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--min"
+            content="x"
+          />
+
+          <CalculatorButton
+            className="calculator__button--min"
+            content="-"
             onClick={() => {
               operatorPressed('-')
             }}
-          >
-            -
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--plus"
+          />
+
+          <CalculatorButton
+            content="+"
+            className="calculator__button--plus"
             onClick={() => {
               operatorPressed('+')
             }}
-          >
-            +
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--dot"
+          />
+
+          <CalculatorButton
+            className="calculator__button--dot"
+            content="."
             onClick={() => {
               numberPressed('.')
             }}
-          >
-            .
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--eq"
+          />
+          <CalculatorButton
+            content="="
             onClick={equalPressed}
-          >
-            =
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--7"
+            className="calculator__button--eq"
+          />
+          <CalculatorButton
+            content={7}
             onClick={() => {
               numberPressed(7)
             }}
-          >
-            7
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--8"
+            className="calculator__button--7"
+          />
+          <CalculatorButton
+            content={8}
             onClick={() => {
               numberPressed(8)
             }}
-          >
-            8
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--9"
+            className="calculator__button--8"
+          />
+          <CalculatorButton
+            content={9}
             onClick={() => {
               numberPressed(9)
             }}
-          >
-            9
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--4"
+            className="calculator__button--9"
+          />
+          <CalculatorButton
+            content={4}
             onClick={() => {
               numberPressed(4)
             }}
-          >
-            4
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--5"
+            className="calculator__button--4"
+          />
+          <CalculatorButton
+            content={5}
             onClick={() => {
               numberPressed(5)
             }}
-          >
-            5
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--6"
+            className="calculator__button--5"
+          />
+          <CalculatorButton
+            content={6}
             onClick={() => {
               numberPressed(6)
             }}
-          >
-            6
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--1"
+            className="calculator__button--6"
+          />
+          <CalculatorButton
+            content={1}
             onClick={() => {
               numberPressed(1)
             }}
-          >
-            1
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--2"
+            className="calculator__button--1"
+          />
+          <CalculatorButton
+            content={2}
             onClick={() => {
               numberPressed(2)
             }}
-          >
-            2
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--3"
+            className="calculator__button--2"
+          />
+          <CalculatorButton
+            content={3}
             onClick={() => {
               numberPressed(3)
             }}
-          >
-            3
-          </button>
-          <button
-            type="button"
-            className="calculator__button calculator__button--0"
+            className="calculator__button--3"
+          />
+          <CalculatorButton
+            content={0}
             onClick={() => {
               numberPressed(0)
             }}
-          >
-            0
-          </button>
+            className="calculator__button--0"
+          />
         </div>
       </div>
     </>
