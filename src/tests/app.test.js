@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import React from 'react'
 import userEvent from '@testing-library/user-event'
-import App from '../components/App'
+import App from '../components/App.jsx'
 
 describe('bottom buttons', () => {
   test('should have a github button', () => {
@@ -29,10 +29,24 @@ describe('bottom buttons', () => {
 
 test('should add number to display when clicked', async () => {
   const user = userEvent.setup()
-  const { getByRole, getAllByRole } = render(<App />)
+  const { getByRole } = render(<App />)
   const button = getByRole('button', { name: /1/i })
   expect(button).toBeEnabled() // The button should be enabled
   await user.click(button) // Click the button
   const displayedNumber = getByRole('math') // Get the number displayed
   expect(displayedNumber).toHaveTextContent('1') // The display should have a 1
+})
+
+test('should have maximum 9 digits on display', async () => {
+  const user = userEvent.setup()
+  const { getAllByRole, getByRole } = render(<App />)
+  const button = getByRole('button', { name: /1/i })
+  expect(button).toBeEnabled() // The button should be enabled
+  for (let i = 0; i < 20; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    await user.click(button) // Click the button
+  }
+  // Get all the digits
+  const displayedDigits = getAllByRole('math')
+  expect(displayedDigits.length).toBe(9)
 })
