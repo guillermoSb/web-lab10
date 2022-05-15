@@ -158,7 +158,9 @@ function App() {
               </span>
             ))
           ) : (
-            <span className="calculator__cell">ERROR</span>
+            <span className="calculator__cell" role="alert">
+              ERROR
+            </span>
           )}
         </div>
         <div className="calculator__keyboard">

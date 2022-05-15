@@ -50,3 +50,23 @@ test('should have maximum 9 digits on display', async () => {
   const displayedDigits = getAllByRole('math')
   expect(displayedDigits.length).toBe(9)
 })
+
+test('should display error if the number is greater than 999999999', async () => {
+  const user = userEvent.setup()
+  const { getAllByRole, getByRole } = render(<App />)
+  const button = getByRole('button', { name: /9/i })
+  const plusButton = getByRole('button', { name: '+' })
+  const equalButton = getByRole('button', { name: '=' })
+  expect(button).toBeEnabled() // The button should be enabled
+  expect(plusButton).toBeEnabled() // The plus button should be enabled
+  for (let i = 0; i < 9; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    await user.click(button) // Click the button
+  }
+  await user.click(plusButton) // Click the plus button
+  await user.click(button) // Add this
+  await user.click(equalButton)
+  const alertError = getByRole('alert')
+  expect(alertError).toBeInTheDocument() // The alert error should display
+  expect(alertError.innerHTML).toBe('ERROR') // The inner HTML displayed should be ERROR
+})
