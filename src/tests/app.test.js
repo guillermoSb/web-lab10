@@ -88,7 +88,7 @@ test('should change theme when clicking the change theme button', async () => {
 
 test('should do math operations correctly', async () => {
   const user = userEvent.setup()
-  const { getByTestId, getByRole, getAllByRole } = render(<App />)
+  const { getByRole, getAllByRole } = render(<App />)
   const four = getByRole('button', { name: /4/i })
   const two = getByRole('button', { name: /2/i })
   const plusButton = getByRole('button', { name: '+' })
@@ -149,7 +149,7 @@ test('should do math operations correctly', async () => {
 
 test('should add . to display', async () => {
   const user = userEvent.setup()
-  const { getByTestId, getByRole, getAllByRole } = render(<App />)
+  const { getByRole, getAllByRole } = render(<App />)
   const dot = getByRole('button', { name: '.' })
   await user.click(dot)
   const displayed = getAllByRole('math') // Get the items displayed
