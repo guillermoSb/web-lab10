@@ -142,7 +142,10 @@ function App() {
           {lightTheme ? <FaSun /> : <FaMoon />}
         </button>
       </div>
-      <div className={`calculator ${lightTheme ? '' : 'calculator--dark'}`}>
+      <div
+        className={`calculator ${lightTheme ? '' : 'calculator--dark'}`}
+        data-testid="calculator"
+      >
         <div className="calculator__screen">
           <span className="calculator__ans">
             {display.length <= 9 ? ans : ''}
