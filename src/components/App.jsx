@@ -171,7 +171,7 @@ function App() {
             type="button"
             className="calculator__button calculator__button--c"
             onClick={clearPressed}
-            content=" C"
+            content="C"
           />
 
           <CalculatorButton
